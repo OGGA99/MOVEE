@@ -4,32 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
     <title>Document</title>
 </head>
 <body>
 <a style="color: blue" href="/addFilm">Add Film</a>
 Films:
 <div>
-<table>
-    <tr>
-        <th>id</th>
-        <th>title</th>
-        <th>description</th>
-        <th>duration</th>
-        <th>category</th>
-        <th>picture</th>
-    </tr>
-    <tr th:each="film: ${films}">
-        <td th:text="${film.id}"></td>
-        <td th:text="${film.title}"></td>
-        <td th:text="${film.description}"></td>
-        <td th:text="${film.duration}"></td>
-        <td th:text="${film.category.name}"></td>
-        <td th:text="${film.pic_url}"></td>
-    <img th:if="${film.pic_url != null}" th:src="@{/getImage(picName=${film.pic_url})}" width="100" height="100">
-    </tr>
-</table>
+
 </div>
 
     <header>
@@ -48,10 +30,10 @@ Films:
                     <a href="/">Home</a>
               </li>
               <li class="menu-list__item">
-                <a href="/catalog.html">Movies</a>
+                <a href="/movies">Movies</a>
           </li>
           <li class="menu-list__item">
-            <a href="/catalog.html">Tv series</a>
+            <a href="/tv">Tv series</a>
               </li>
             </ul>
           </div>
@@ -67,15 +49,16 @@ Films:
                 <a
                 key={movie.id}
                 class="card flex align-center"
+                th:each="film: ${films}"
+                th:href="@{'movies/'+${film.id}}"
               >
                 <div>
-                  <div class="card-image-wrapper">
-                    <img
-                      src='https://image.tmdb.org/t/p/w500//kZNHR1upJKF3eTzdgl5V8s8a4C3.jpg'
+                  <div class="card-image-wrapper" >
+                    <img th:if="${film.pic_url != null}" th:src="@{/getImage(picName=${film.pic_url})}"
                       alt="no image found"
                     />
                   </div>
-                  <p>Scream</p>
+                  <p th:text="${film.title}"></p>
                 </div>
               </a>
               </div>

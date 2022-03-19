@@ -19,4 +19,8 @@ public class FilmService {
         return filmRepository.findAll();
     }
 
+    public Film findById(int id) {
+        return filmRepository.getById(id);
+    }
+
 }

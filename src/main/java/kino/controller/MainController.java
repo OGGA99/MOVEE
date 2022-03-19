@@ -1,5 +1,7 @@
 package kino.controller;
 
+import kino.entity.Film;
+import kino.repository.CategoryRepository;
 import kino.repository.FilmRepository;
 import kino.repository.UserRepository;
 import org.apache.commons.io.IOUtils;
@@ -9,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,6 +26,8 @@ public class MainController {
     private UserRepository userRepository;
     @Autowired
     private FilmRepository filmRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Value("${kino.upload.file}")
     private String imagePath;
@@ -32,6 +37,23 @@ public class MainController {
     public String main(ModelMap map) {
         map.addAttribute("films",filmRepository.findAll());
         return "index";
+    }
+
+    @GetMapping("/movies")
+    public String movies(ModelMap map) {
+        return "catalog";
+    }
+    @GetMapping("/tv")
+    public String tv(ModelMap map) {
+        return "catalog";
+    }
+
+    @GetMapping("/movies/{id}")
+    public String singleMovie(@PathVariable int id, ModelMap map) {
+        Film film = filmRepository.findById(id).orElseThrow(RuntimeException::new);
+        map.addAttribute("films",film);
+        map.addAttribute("categories",categoryRepository.findAll());
+        return "singleitem";
     }
 
     @GetMapping(value = "/getImage", produces = MediaType.IMAGE_JPEG_VALUE)
