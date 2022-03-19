@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -21,8 +22,8 @@ public class Film {
     private String title;
     private String description;
     private int duration;
-    @ManyToOne
-    private Category category;
+    @ManyToMany
+    private List <Category> categories;
     private String pic_url;
 
 

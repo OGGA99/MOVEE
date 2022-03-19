@@ -1,10 +1,13 @@
 package kino.controller;
 
+import kino.dto.CreateFilmRequest;
 import kino.entity.Category;
 import kino.entity.Film;
 import kino.repository.CategoryRepository;
 import kino.repository.FilmRepository;
 import kino.repository.UserRepository;
+import kino.service.CategoryService;
+import kino.service.FilmService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -30,20 +34,35 @@ public class FilmController {
     private UserRepository userRepository;
     @Autowired
     private CategoryRepository categoryRepository;
+    @Autowired
+    private FilmService filmService;
+    @Autowired
+    private CategoryService categoryService;
 
     @Value("${kino.upload.file}")
     private String imagePath;
 
     @GetMapping("/addFilm")
     public String addFilmPage(ModelMap map) {
-        List<Category> categories = categoryRepository.findAll();
-        map.addAttribute("categories", categories);
+        map.addAttribute("categories", categoryService.findAll());
+        map.addAttribute("films",filmService.findAll());
         return "addFilm";
     }
 
     @PostMapping("/addFilm")
-    public String addFilm(@ModelAttribute Film film,
+    public String addFilm(@ModelAttribute CreateFilmRequest createFilmRequest,
                           @RequestParam("picture") MultipartFile uploadedFile) throws IOException {
+        List<Category> categories = new ArrayList<>();
+        for (Integer category : createFilmRequest.getCategories()) {
+            categories.add(categoryRepository.getById(category));
+        }
+        Film film = Film.builder()
+                .id(createFilmRequest.getId())
+                .title(createFilmRequest.getTitle())
+                .description(createFilmRequest.getDescription())
+                .duration(createFilmRequest.getDuration())
+                .categories(categories)
+                .build();
         if (!uploadedFile.isEmpty()) {
             String fileName = System.currentTimeMillis() + "_" + uploadedFile.getOriginalFilename();
             File newFile = new File(imagePath + fileName);

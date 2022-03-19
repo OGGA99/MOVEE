@@ -45,11 +45,9 @@
                   />
               </div>
               <div class="details__other flex">
-                <p class="movie__title">
-                  Scream
-                </p>
+                <p class="movie__title" th:text="${films.title}"></p>
                 <div class="genres">
-                      <span key={i} class="genre__name">
+                      <span th:each="category: ${films.categories}" th:text="${category.name}"  key={i} class="genre__name">
                         Horror
                       </span>
 
