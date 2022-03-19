@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div
+          class="background-container">
+        </div>
+        <div class="container align-start justify-between flex">
+          <div class="logo">
+            <Link to="/">
+              <h1>Hovo project</h1>
+            </Link>
+          </div>
+          <div class="menu">
+            <ul class="menu__list flex">
+              <li class="menu-list__item">
+                <a href="/">Home</a>
+              </li>
+              <li class="menu-list__item">
+                <a href="/catalog.html">Movies</a>
+          </li>
+          <li class="menu-list__item">
+            <a href="/catalog.html">Tv series</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <main>
+        <div class="container">
+          <div>
+            <div class="title__search flex justify-between">
+              <div class="category-text">Movies</div>
+            </div>
+            <div class="card-wrapper flex">
+                <a
+                key={movie.id}
+                class="card flex align-center"
+                href='/id'
+              >
+                <div>
+                  <div class="card-image-wrapper">
+                    <img
+                      src='https://image.tmdb.org/t/p/w500//kZNHR1upJKF3eTzdgl5V8s8a4C3.jpg'
+                      alt="no image found"
+                    />
+                  </div>
+                  <p>Scream</p>
+                </div>
+              </a>
+              </div>
+          </div>
+        </div>
+      </main>
+</body>
+</html>
