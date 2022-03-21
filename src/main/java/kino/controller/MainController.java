@@ -39,10 +39,6 @@ public class MainController {
         return "index";
     }
 
-    @GetMapping("/movies")
-    public String movies(ModelMap map) {
-        return "catalog";
-    }
     @GetMapping("/tv")
     public String tv(ModelMap map) {
         return "catalog";

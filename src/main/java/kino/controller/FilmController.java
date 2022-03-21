@@ -9,6 +9,7 @@ import kino.repository.UserRepository;
 import kino.service.CategoryService;
 import kino.service.FilmService;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -38,6 +39,8 @@ public class FilmController {
     private FilmService filmService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ModelMapper mapper;
 
     @Value("${kino.upload.file}")
     private String imagePath;

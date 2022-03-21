@@ -59,6 +59,36 @@ header {
   color: white;
 }
 
+.movie__premier{
+  margin-top: 18px;
+  font-size: 18px;
+}
+.movie__duration{
+  margin-top: 18px;
+  font-size: 18px;
+}
+.background_poster{
+  position: absolute;
+  width: 100%;
+  display: flex;
+  z-index: -1000;
+  height: 50%;
+  top: 0;
+}
+.background_poster>img{
+  object-fit: cover;
+
+  position: absolute;
+  z-index: -1000;
+  opacity: 0.2;
+  left: 0;
+  min-height: 350px;
+  height: 250px;
+  top: 3px;
+  width: 100%;
+
+  filter: blur(5px);
+}
 header .background-container {
   position: absolute;
   left: 0;
@@ -121,6 +151,25 @@ header .container .menu .menu__list {
 header .container .menu .menu__list .menu-list__item {
   position: relative;
   cursor: pointer;
+}
+.comment__area{
+  width: 450px;
+  height: 250px;
+  resize: vertical;
+
+}
+.comment__button{
+  color: white;
+  border-color: #333;
+  border-radius:10px;
+  width:129px;
+  height:30px;
+  background: transparent;
+  font-family: 'Rubik',sans-serif;
+}
+.comment__section>.overview{
+  display: flex;
+  flex-direction: column;
 }
 header .container .menu .menu__list .menu-list__item::before {
   position: absolute;
@@ -260,20 +309,7 @@ main .container {
   padding: 30px;
 }
 
-.background_poster {
-  position: absolute;
-  z-index: -1000;
-  opacity: 0.2;
-  left: 0;
-  min-height: 350px;
-  height: 50%;
-  top: 0;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  filter: blur(5px);
-}
+
 
 .details__container {
   width: 70%;
@@ -303,12 +339,16 @@ main .container {
   color: white;
 }
 .details__container .genres {
+  margin-top: 15px;
+  align-items: center;
   flex-wrap: wrap;
   gap: 5px;
   display: flex;
 }
+.other__text{
+  font-size: 18px;
+}
 .details__container .genre__name {
-  margin-top: 15px;
   height: fit-content;
   display: block;
   width: fit-content;

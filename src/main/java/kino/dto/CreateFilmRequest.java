@@ -1,11 +1,9 @@
 package kino.dto;
 
-import kino.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.ManyToMany;
 import java.util.List;
 
 @Data

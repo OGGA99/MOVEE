@@ -14,62 +14,77 @@ Films:
 
 </div>
 
-    <header>
-        <div
-          class="background-container">
-        </div>
-        <div class="container align-start justify-between flex">
-          <div class="logo">
+<header>
+    <div
+            class="background-container">
+    </div>
+    <div class="container align-start justify-between flex">
+        <div class="logo">
             <Link to="/">
-              <h1>Movie App</h1>
+            <h1>Movie App</h1>
             </Link>
-          </div>
-          <div class="menu">
-            <ul class="menu__list flex">
-              <li class="menu-list__item">
-                    <a href="/">Home</a>
-              </li>
-              <li class="menu-list__item">
-                <a href="/movies">Movies</a>
-          </li>
-          <li class="menu-list__item">
-            <a href="/tv">Tv series</a>
-              </li>
-            </ul>
-          </div>
         </div>
-      </header>
-      <main>
-        <div class="container">
-            <div>
-              <div class="category-text flex justify-between">
-                Trending movies
-              </div>
-              <div  class="card-wrapper flex">
-                <a
-                key={movie.id}
-                class="card flex align-center"
-                th:each="film: ${films}"
-                th:href="@{'movies/'+${film.id}}"
-              >
+        <div class="menu">
+            <ul class="menu__list flex">
+                <li class="menu-list__item">
+                    <a href="/">Home</a>
+                </li>
+
+                <li class="menu-list__item">
+                    <a href="/tv">Tv series</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<main>
+    <div class="container">
+        <div class="category-text flex justify-between">
+            Trending Movies
+        </div>
+        <div class="card-wrapper flex">
+            <a
+                    key={movie.id}
+                    class="card flex align-center"
+                    th:each="film: ${films}"
+
+                    th:href="@{'movies/'+${film.id}}"
+            >
                 <div>
-                  <div class="card-image-wrapper" >
-                    <img th:if="${film.pic_url != null}" th:src="@{/getImage(picName=${film.pic_url})}"
-                      alt="no image found"
-                    />
-                  </div>
-                  <p th:text="${film.title}"></p>
+                    <div class="card-image-wrapper">
+                        <img th:if="${film.pic_url != null}" th:src="@{/getImage(picName=${film.pic_url})}"
+                             alt="no image found"
+                        />
+                    </div>
+                    <p th:text="${film.title}"></p>
                 </div>
-              </a>
-              </div>
+            </a>
+        </div>
+        <div>
+            <div class="category-text flex justify-between">
+                Movies
             </div>
-            <div>
-              <div class="category-text flex justify-between">
-                Trending Tv
-              </div>
-              <Card category="tv" product={TV} />
+            <div class="card-wrapper flex">
+                <a
+                        key={movie.id}
+                        class="card flex align-center"
+                        th:each="film: ${films}"
+                        th:href="@{'movies/'+${film.id}}"
+                >
+                    <div>
+                        <div class="card-image-wrapper">
+                            <img th:if="${film.pic_url != null}" th:src="@{/getImage(picName=${film.pic_url})}"
+                                 alt="no image found"
+                            />
+                        </div>
+                        <p th:text="${film.title}"></p>
+                    </div>
+                </a>
             </div>
-          </div>
-      </main>
+        </div>
+        <div>
+        </div>
+    </div>
+</main>
 </body>
 </html>
