@@ -35,7 +35,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(ModelMap map) {
-        map.addAttribute("films",filmRepository.findAll());
+        map.addAttribute("films", filmRepository.findAll());
         return "index";
     }
 
@@ -47,13 +47,14 @@ public class MainController {
     @GetMapping("/movies/{id}")
     public String singleMovie(@PathVariable int id, ModelMap map) {
         Film film = filmRepository.findById(id).orElseThrow(RuntimeException::new);
-        map.addAttribute("films",film);
-        map.addAttribute("categories",categoryRepository.findAll());
+        map.addAttribute("films", film);
+        map.addAttribute("categories", categoryRepository.findAll());
         return "singleitem";
     }
 
     @GetMapping(value = "/getImage", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getImage(@RequestParam("picName") String picName) throws IOException {
+    public @ResponseBody
+    byte[] getImage(@RequestParam("picName") String picName) throws IOException {
         InputStream inputStream = new FileInputStream(imagePath + picName);
         return IOUtils.toByteArray(inputStream);
 
