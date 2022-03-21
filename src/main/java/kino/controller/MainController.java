@@ -49,7 +49,7 @@ public class MainController {
         Film film = filmRepository.findById(id).orElseThrow(RuntimeException::new);
         map.addAttribute("films", film);
         map.addAttribute("categories", categoryRepository.findAll());
-        return "singleitem";
+        return "singleMovie";
     }
 
     @GetMapping(value = "/getImage", produces = MediaType.IMAGE_JPEG_VALUE)

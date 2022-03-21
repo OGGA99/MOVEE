@@ -47,7 +47,6 @@ Films:
                     key={movie.id}
                     class="card flex align-center"
                     th:each="film: ${films}"
-
                     th:href="@{'movies/'+${film.id}}"
             >
                 <div>
